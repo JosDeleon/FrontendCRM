@@ -3,7 +3,7 @@ import { setContext } from 'apollo-link-context';
 import { onError } from "@apollo/client/link/error";
 
 const httpLink = createHttpLink({
-    uri : 'http://localhost:4000/',
+    uri : 'https://morning-journey-09515.herokuapp.com/',
     fetch
 });
 
