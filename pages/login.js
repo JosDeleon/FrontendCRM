@@ -44,9 +44,10 @@ const Login = () => {
                 console.log(data)
                 
                 guardarMensaje('Autenticando...')
-                const { token } = data.autenticarUsuario;
-                console.log(token);
-                localStorage.setItem('token', token);
+                setTimeout(() => {
+                    const { token } = data.autenticarUsuario;
+                    localStorage.setItem('token', token);
+                }, 1000);
 
                 setTimeout(() => {
                     guardarMensaje(null);
