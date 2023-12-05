@@ -8,7 +8,9 @@ import { onError } from "@apollo/client/link/error";
 // });
 const httpLink = createHttpLink({
     uri : 'https://656e9a254c37ab0497a9b327--rococo-hotteok-094ba8.netlify.app/',
-    fetch,
+    fetchOptions: {
+        mode: 'no-cors', // no-cors, *cors, same-origin
+     }
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -17,8 +19,7 @@ const authLink = setContext((_, { headers }) => {
     return {
         headers: {
             ...headers,
-            authorization : token ? `Bearer ${token}` : '',
-            "Access-Control-Allow-Origin" : '*'
+            authorization : token ? `Bearer ${token}` : ''
         }
     }
 });
