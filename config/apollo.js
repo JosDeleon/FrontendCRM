@@ -18,6 +18,7 @@ const authLink = setContext((_, { headers }) => {
         headers: {
             ...headers,
             authorization : token ? `Bearer ${token}` : '',
+            "Access-Control-Allow-Origin" : '*'
         }
     }
 });
@@ -25,10 +26,7 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
     connectToDevTools: true,
     cache : new InMemoryCache(),
-    link : authLink.concat(httpLink),
-    headers: {
-        "Access-Control-Allow-Origin" : '*'
-    }
+    link : authLink.concat(httpLink)
 });
 
 export default client;
