@@ -8,7 +8,7 @@ import { onError } from "@apollo/client/link/error";
 // });
 const httpLink = createHttpLink({
     uri : 'https://656e9a254c37ab0497a9b327--rococo-hotteok-094ba8.netlify.app/',
-    fetch
+    fetch,
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -17,7 +17,7 @@ const authLink = setContext((_, { headers }) => {
     return {
         headers: {
             ...headers,
-            authorization : token ? `Bearer ${token}` : ''
+            authorization : token ? `Bearer ${token}` : '',
         }
     }
 });
@@ -25,7 +25,10 @@ const authLink = setContext((_, { headers }) => {
 const client = new ApolloClient({
     connectToDevTools: true,
     cache : new InMemoryCache(),
-    link : authLink.concat(httpLink)
+    link : authLink.concat(httpLink),
+    headers: {
+        "Access-Control-Allow-Origin" : '*'
+    }
 });
 
 export default client;
